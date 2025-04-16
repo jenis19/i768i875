@@ -1,74 +1,52 @@
 {{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
 
-<div class="custom-hero-section">
-  <div class="custom-hero-container">
-    <div class="custom-hero-image desktop-only">
-      <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.heading }}" loading="eager">
+<div class="brewster-hero-section">
+  <div class="brewster-desktop-image">
+    <img src="{{ section.settings.image | img_url: 'master' }}" alt="Brewster Village Marketplace" loading="eager">
+  </div>
+  <div class="brewster-mobile-image">
+    <img src="{{ section.settings.image_mobile | img_url: 'master' }}" alt="Brewster Village Marketplace" loading="eager">
+  </div>
+
+  {% if section.settings.show_navbar %}
+  <div class="brewster-navbar">
+    <div class="brewster-logo">
+      BREWSTER VILLAGE
+      <div class="brewster-logo-small">MARKETPLACE</div>
     </div>
-    <div class="custom-hero-image mobile-only">
-      <img src="{{ section.settings.image_mobile | img_url: 'master' }}" alt="{{ section.settings.heading }}" loading="eager">
+    <div class="brewster-nav-links">
+      <a href="/collections/all">Shop</a>
+      <a href="/pages/deli-menu">Deli</a>
+      <a href="/pages/about">About</a>
+      <a href="/pages/visit-us">Visit Us</a>
+      <a href="/pages/contact">Contact</a>
     </div>
-    <div class="custom-hero-content-container">
-      <div class="custom-hero-content">
-        <div class="logo-container">
-          {% if section.settings.show_logo %}
-            <div class="custom-hero-logo">
-              BREWSTER VILLAGE
-              <div class="marketplace-text">MARKETPLACE</div>
-            </div>
-          {% endif %}
-        </div>
-        <h1 class="custom-hero-heading">{{ section.settings.heading }}</h1>
-        <p class="custom-hero-text">{{ section.settings.text }}</p>
-        <div class="custom-hero-buttons">
-          {% if section.settings.button_label != blank %}
-            <a href="{{ section.settings.button_link }}" class="custom-hero-button">
-              {{ section.settings.button_label }}
-            </a>
-          {% endif %}
-          {% if section.settings.button_label_2 != blank %}
-            <a href="{{ section.settings.button_link_2 }}" class="custom-hero-button">
-              {{ section.settings.button_label_2 }}
-            </a>
-          {% endif %}
-        </div>
-      </div>
+  </div>
+  {% endif %}
+
+  <div class="brewster-hero-content">
+    <h1>Welcome to Brewster<br>Village Marketplace</h1>
+    <p>Your Local Spot for Beer, Wine, Deli & More</p>
+    <div class="brewster-buttons">
+      <a href="{{ section.settings.button_link }}" class="brewster-button">Shop Now</a>
+      <a href="{{ section.settings.button_link_2 }}" class="brewster-button">View Deli Menu</a>
     </div>
-    {% if section.settings.show_navbar %}
-      <div class="custom-navbar">
-        <div class="navbar-logo">
-          BREWSTER VILLAGE
-          <div class="marketplace-text-small">MARKETPLACE</div>
-        </div>
-        <div class="navbar-links">
-          <a href="/collections/all" class="nav-link">Shop</a>
-          <a href="/pages/deli-menu" class="nav-link">Deli</a>
-          <a href="/pages/about" class="nav-link">About</a>
-          <a href="/pages/visit" class="nav-link">Visit Us</a>
-          <a href="/pages/contact" class="nav-link">Contact</a>
-        </div>
-      </div>
-    {% endif %}
   </div>
 </div>
 
 <style>
-  .custom-hero-section {
-    width: 100%;
+  .brewster-hero-section {
     position: relative;
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
     color: #ffffff;
     font-family: Georgia, serif;
   }
   
-  .custom-hero-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    max-height: 900px;
-    overflow: hidden;
-  }
-  
-  .custom-hero-image {
+  .brewster-desktop-image, 
+  .brewster-mobile-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -76,211 +54,146 @@
     height: 100%;
   }
   
-  .custom-hero-image img {
+  .brewster-desktop-image img, 
+  .brewster-mobile-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
-    filter: brightness(0.7);
   }
   
-  .desktop-only {
-    display: block;
-  }
-  
-  .mobile-only {
+  .brewster-mobile-image {
     display: none;
   }
   
-  .custom-hero-content-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    text-align: center;
-  }
-  
-  .custom-hero-content {
-    max-width: 800px;
-    padding: 20px;
-  }
-
-  .logo-container {
-    margin-bottom: 2rem;
-  }
-
-  .custom-hero-logo {
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #ffffff;
-    line-height: 1.2;
-  }
-
-  .marketplace-text {
-    font-size: 0.9rem;
-    letter-spacing: 4px;
-  }
-
-  .marketplace-text-small {
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-  }
-  
-  .custom-hero-heading {
-    font-size: 5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    line-height: 1.1;
-  }
-  
-  .custom-hero-text {
-    font-size: 1.8rem;
-    margin-bottom: 2.5rem;
-    font-weight: 400;
-  }
-  
-  .custom-hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .custom-hero-button {
-    display: inline-block;
-    min-width: 200px;
-    padding: 15px 30px;
-    border: 2px solid #ffffff;
-    color: #ffffff;
-    background-color: transparent;
-    font-size: 1.2rem;
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-  }
-  
-  .custom-hero-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-
-  .custom-navbar {
+  .brewster-navbar {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 30px 40px;
     z-index: 10;
   }
-
-  .navbar-logo {
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: #ffffff;
+  
+  .brewster-logo {
+    font-size: 18px;
+    letter-spacing: 3px;
     line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: 600;
   }
-
-  .navbar-links {
+  
+  .brewster-logo-small {
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  
+  .brewster-nav-links {
     display: flex;
     gap: 30px;
   }
-
-  .nav-link {
+  
+  .brewster-nav-links a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: opacity 0.3s ease;
+    font-size: 16px;
+    transition: opacity 0.2s ease;
   }
-
-  .nav-link:hover {
+  
+  .brewster-nav-links a:hover {
     opacity: 0.8;
   }
   
-  @media screen and (max-width: 990px) {
-    .custom-hero-heading {
-      font-size: 3.5rem;
-    }
-    
-    .custom-hero-text {
-      font-size: 1.5rem;
-    }
-    
-    .custom-hero-button {
-      min-width: 180px;
-      padding: 12px 25px;
-    }
-
-    .navbar-links {
-      gap: 15px;
-    }
-
-    .nav-link {
-      font-size: 0.9rem;
-    }
+  .brewster-hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+    z-index: 5;
   }
   
-  @media screen and (max-width: 768px) {
-    .desktop-only {
+  .brewster-hero-content h1 {
+    font-size: 72px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    line-height: 1.1;
+  }
+  
+  .brewster-hero-content p {
+    font-size: 28px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+  
+  .brewster-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .brewster-button {
+    display: inline-block;
+    padding: 16px 40px;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    min-width: 200px;
+  }
+  
+  .brewster-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  @media screen and (max-width: 900px) {
+    .brewster-desktop-image {
       display: none;
     }
     
-    .mobile-only {
+    .brewster-mobile-image {
       display: block;
     }
     
-    .custom-hero-container {
-      height: 80vh;
+    .brewster-navbar {
+      padding: 20px;
     }
     
-    .custom-hero-heading {
-      font-size: 2.5rem;
-    }
-    
-    .custom-hero-text {
-      font-size: 1.2rem;
-    }
-    
-    .custom-hero-buttons {
-      flex-direction: column;
-      gap: 15px;
-    }
-    
-    .custom-hero-button {
-      min-width: 160px;
-      padding: 10px 20px;
-      font-size: 1rem;
-    }
-
-    .custom-navbar {
-      padding: 15px 20px;
-    }
-
-    .navbar-logo {
-      font-size: 1rem;
-    }
-
-    .navbar-links {
+    .brewster-nav-links {
       display: none;
+    }
+    
+    .brewster-hero-content h1 {
+      font-size: 46px;
+    }
+    
+    .brewster-hero-content p {
+      font-size: 22px;
+    }
+    
+    .brewster-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .brewster-button {
+      width: 80%;
+      margin-bottom: 10px;
     }
   }
 </style>
 
 {% schema %}
 {
-  "name": "Custom Hero",
+  "name": "Brewster Hero",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -296,62 +209,28 @@
     },
     {
       "type": "checkbox",
-      "id": "show_logo",
-      "label": "Show Logo in Hero",
-      "default": false
-    },
-    {
-      "type": "checkbox",
       "id": "show_navbar",
       "label": "Show Navigation Bar",
       "default": true
     },
     {
-      "type": "text",
-      "id": "heading",
-      "default": "Welcome to Brewster Village Marketplace",
-      "label": "Heading"
-    },
-    {
-      "type": "text",
-      "id": "text",
-      "default": "Your Local Spot for Beer, Wine, Deli & More",
-      "label": "Text"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "default": "Shop Now",
-      "label": "First Button Label"
-    },
-    {
       "type": "url",
       "id": "button_link",
       "default": "/collections/all",
-      "label": "First Button Link"
-    },
-    {
-      "type": "text",
-      "id": "button_label_2",
-      "default": "View Deli Menu",
-      "label": "Second Button Label"
+      "label": "Shop Now Button Link"
     },
     {
       "type": "url",
       "id": "button_link_2",
       "default": "/pages/deli-menu",
-      "label": "Second Button Link"
+      "label": "View Deli Menu Button Link"
     }
   ],
   "presets": [
     {
-      "name": "Custom Hero",
+      "name": "Brewster Hero",
       "settings": {
-        "heading": "Welcome to Brewster Village Marketplace",
-        "text": "Your Local Spot for Beer, Wine, Deli & More",
-        "button_label": "Shop Now",
         "button_link": "/collections/all",
-        "button_label_2": "View Deli Menu",
         "button_link_2": "/pages/deli-menu",
         "show_navbar": true
       }
