@@ -10,6 +10,14 @@
     </div>
     <div class="custom-hero-content-container">
       <div class="custom-hero-content">
+        <div class="logo-container">
+          {% if section.settings.show_logo %}
+            <div class="custom-hero-logo">
+              BREWSTER VILLAGE
+              <div class="marketplace-text">MARKETPLACE</div>
+            </div>
+          {% endif %}
+        </div>
         <h1 class="custom-hero-heading">{{ section.settings.heading }}</h1>
         <p class="custom-hero-text">{{ section.settings.text }}</p>
         <div class="custom-hero-buttons">
@@ -26,6 +34,21 @@
         </div>
       </div>
     </div>
+    {% if section.settings.show_navbar %}
+      <div class="custom-navbar">
+        <div class="navbar-logo">
+          BREWSTER VILLAGE
+          <div class="marketplace-text-small">MARKETPLACE</div>
+        </div>
+        <div class="navbar-links">
+          <a href="/collections/all" class="nav-link">Shop</a>
+          <a href="/pages/deli-menu" class="nav-link">Deli</a>
+          <a href="/pages/about" class="nav-link">About</a>
+          <a href="/pages/visit" class="nav-link">Visit Us</a>
+          <a href="/pages/contact" class="nav-link">Contact</a>
+        </div>
+      </div>
+    {% endif %}
   </div>
 </div>
 
@@ -86,6 +109,29 @@
     max-width: 800px;
     padding: 20px;
   }
+
+  .logo-container {
+    margin-bottom: 2rem;
+  }
+
+  .custom-hero-logo {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+
+  .marketplace-text {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+  }
+
+  .marketplace-text-small {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+  }
   
   .custom-hero-heading {
     font-size: 5rem;
@@ -124,6 +170,44 @@
   .custom-hero-button:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
+
+  .custom-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .navbar-logo {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 1.2;
+  }
+
+  .navbar-links {
+    display: flex;
+    gap: 30px;
+  }
+
+  .nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-link:hover {
+    opacity: 0.8;
+  }
   
   @media screen and (max-width: 990px) {
     .custom-hero-heading {
@@ -137,6 +221,14 @@
     .custom-hero-button {
       min-width: 180px;
       padding: 12px 25px;
+    }
+
+    .navbar-links {
+      gap: 15px;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
     }
   }
   
@@ -171,6 +263,18 @@
       padding: 10px 20px;
       font-size: 1rem;
     }
+
+    .custom-navbar {
+      padding: 15px 20px;
+    }
+
+    .navbar-logo {
+      font-size: 1rem;
+    }
+
+    .navbar-links {
+      display: none;
+    }
   }
 </style>
 
@@ -189,6 +293,18 @@
       "type": "image_picker",
       "id": "image_mobile",
       "label": "Mobile Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logo",
+      "label": "Show Logo in Hero",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navbar",
+      "label": "Show Navigation Bar",
+      "default": true
     },
     {
       "type": "text",
@@ -236,7 +352,8 @@
         "button_label": "Shop Now",
         "button_link": "/collections/all",
         "button_label_2": "View Deli Menu",
-        "button_link_2": "/pages/deli-menu"
+        "button_link_2": "/pages/deli-menu",
+        "show_navbar": true
       }
     }
   ]
